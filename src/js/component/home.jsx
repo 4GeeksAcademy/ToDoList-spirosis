@@ -1,24 +1,28 @@
-import React from "react";
-
+import React, {useState} from "react";
+import { v4 as uuidv4} from 'uuid';
+import { Todo } from "./Todo"
+uuidv4();
 //include images into your bundle
-import rigoImage from "../../img/rigo-baby.jpg";
 
+import TaskDisplay from './TaskDisplay'
 //create your first component
+
+
 const Home = () => {
+	const[ todos, setTodos] = useState([]);
+
+	const addTodo = todo => {
+		setTodos([...todos, {id: uuidv4(), task: todo,
+		completed: false, isEditing: false}]);
+		
+
+	}
 	return (
-		<div className="text-center">
-			<h1 className="text-center mt-5">Hello Rigo!</h1>
-			<p>
-				<img src={rigoImage} />
-			</p>
-			<a href="#" className="btn btn-success">
-				If you see this green button... bootstrap is working...
-			</a>
-			<p>
-				Made by{" "}
-				<a href="http://www.4geeksacademy.com">4Geeks Academy</a>, with
-				love!
-			</p>
+		<div className="taskWrapper">
+			<TaskDisplay addTodo={addTodo} />
+			{todos.map((todo, index) => (
+				<Todo task={todo} key={index} />
+			))};
 		</div>
 	);
 };
