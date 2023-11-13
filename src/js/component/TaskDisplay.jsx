@@ -1,6 +1,5 @@
 import React, {useState} from 'react';
-
-
+import { Todo } from './Todo'
 
 function TaskDisplay({addTodo}) {
   const [ value, setValue] = useState("");
@@ -12,25 +11,23 @@ function TaskDisplay({addTodo}) {
     setValue("");
   }
     return ( 
-    <form className="TaskForm text-center" onSubmit={handleSubmit}>
+      
+    <form className="TaskForm" onSubmit={handleSubmit}>
        
-      <div className="title ">
+      <div className="title text-center">
         <h1 className="display-1 text-muted">todos</h1>
       </div>
       <ul class="list-group container col-8">
       
   <input 
-    className="todo-input text-center border-0 py-2" 
+    className="todo-input text-left border-0 py-2" 
     type="text"
     value={value}
     placeholder="What is the task today?" 
     onChange = { e => setValue(e.target.value)} />
-  <li className="list-group-item d-flex justify-content-between align-items-center">
-    <div className="mr-auto">Do your bed MF!</div>
-    <div className="ml-auto"><button className="btn">X</button></div>
-    
-</li>
-<footer className="border-0 py-2" placeholder="What is the task today?">N items Left</footer>
+  
+  
+
  
 </ul>
 
